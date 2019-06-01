@@ -88,7 +88,7 @@ def convert_points_from_homogeneous(points: torch.Tensor) -> torch.Tensor:
     scale: torch.Tensor = torch.where(
         torch.abs(z_vec) > EPS,
         torch.tensor(1.) / z_vec,
-        torch.tensor(1.) / torch.tensor(EPS).to(points.device))
+        torch.tensor(1.).to(points.device) / torch.tensor(EPS))
 
     return scale * points[..., :-1]
 
